@@ -23,6 +23,7 @@ public class Driver {
 
             Scanner input = new Scanner(System.in);
 
+            // validate invalid type of input and menu options (out of range)
             try {
                 System.out.println("Enter your option: ");
                 int userChoice = input.nextInt();
@@ -38,11 +39,13 @@ public class Driver {
                         String nameInput = InputCollector.getUserInput("Enter name: ");
                         while (nameInput.equals("")) {
                             System.out.println("You must enter this field.");
+                            System.out.println("You should input at least one number or letter.");
                             nameInput = InputCollector.getUserInput("Enter name: ");
                         }
                         String mobileInput = InputCollector.getUserInput("Enter mobile: ");
                         while (mobileInput.equals("")) {
                             System.out.println("You must enter this field.");
+                            System.out.println("You should input at least one number or letter.");
                             mobileInput = InputCollector.getUserInput("Enter mobile: ");
                         }
                         String workInput = InputCollector.getUserInput("Enter work: ");
@@ -68,7 +71,7 @@ public class Driver {
                                 int indexInTheList = contactsForThisUser.isContactThere(indexToRemove);
                                 contactsForThisUser.removeContact(indexInTheList);
                             } else {
-                                System.out.println("The index number is invalid.");
+                                System.out.println("The index number is out of range.");
                             }
                         } else {
                             System.out.println("There is no contact yet.");
@@ -84,11 +87,13 @@ public class Driver {
                                 String nameInput1 = InputCollector.getUserInput("Enter name: ");
                                 while (nameInput1.equals("")) {
                                     System.out.println("You must enter this field.");
+                                    System.out.println("You should input at least one number or letter.");
                                     nameInput1 = InputCollector.getUserInput("Enter name: ");
                                 }
                                 String mobileInput1 = InputCollector.getUserInput("Enter mobile: ");
                                 while (mobileInput1.equals("")) {
                                     System.out.println("You must enter this field.");
+                                    System.out.println("You should input at least one number or letter.");
                                     mobileInput1 = InputCollector.getUserInput("Enter mobile: ");
                                 }
                                 String workInput1 = InputCollector.getUserInput("Enter work: ");
@@ -103,7 +108,7 @@ public class Driver {
                                     System.out.println("The contact already exists.");
                                 }
                             } else {
-                                System.out.println("The index number is invalid.");
+                                System.out.println("The index number is out of range.");
                             }
                         } else {
                             System.out.println("There is no contact yet.");
@@ -118,7 +123,7 @@ public class Driver {
                 }
             } catch (InputMismatchException exception) {
                 System.out.println("This is not an integer.");
-                System.out.println("Invalid Input. Enter number between 1 and 5.");
+                System.out.println("Invalid Input. Enter an index number in the list.");
             }
         }
 
