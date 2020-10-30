@@ -96,8 +96,12 @@ public class Driver {
                                 String cityInput1 = InputCollector.getUserInput("Enter city: ");
 
                                 Contact contact1 = new Contact(indexToUpdate, nameInput1, mobileInput1, workInput1, homeInput1, cityInput1);
-                                contactsForThisUser.updateContact(indexInTheList, contact1);
-                                System.out.println("The contact is updated.");
+                                if (contactsForThisUser.canContactAdd(contact1)) {
+                                    contactsForThisUser.updateContact(indexInTheList, contact1);
+                                    System.out.println("The contact is updated.");
+                                } else {
+                                    System.out.println("The contact already exists.");
+                                }
                             } else {
                                 System.out.println("The index number is invalid.");
                             }
