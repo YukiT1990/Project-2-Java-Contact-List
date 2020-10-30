@@ -50,21 +50,60 @@ public class Driver {
                         String cityInput = InputCollector.getUserInput("Enter city: ");
 
                         Contact contact = new Contact(index, nameInput, mobileInput, workInput, homeInput, cityInput);
-                        contactsForThisUser.addContact(contact);
 
-                        index += 1;
+                        if (contactsForThisUser.canContactAdd(contact)) {
+                            contactsForThisUser.addContact(contact);
+                            System.out.println("Successfully added a new contact!");
+                            index += 1;
+                        } else {
+                            System.out.println("The contact already exists.");
+                        }
                         break;
                     case 3:
                         if (!contactsForThisUser.isContactEmpty()) {
                             contactsForThisUser.listContacts();
                             System.out.println("Enter the index of the contact to remove: ");
                             int indexToRemove = input.nextInt();
-                            contactsForThisUser.removeContact(indexToRemove);
+                            if(contactsForThisUser.isContactThere(indexToRemove) != -1) {
+                                int indexInTheList = contactsForThisUser.isContactThere(indexToRemove);
+                                contactsForThisUser.removeContact(indexInTheList);
+                            } else {
+                                System.out.println("The index number is invalid.");
+                            }
                         } else {
                             System.out.println("There is no contact yet.");
                         }
                         break;
                     case 4:
+                        if (!contactsForThisUser.isContactEmpty()) {
+                            contactsForThisUser.listContacts();
+                            System.out.println("Enter the index of the contact to update: ");
+                            int indexToUpdate = input.nextInt();
+                            if(contactsForThisUser.isContactThere(indexToUpdate) != -1) {
+                                int indexInTheList = contactsForThisUser.isContactThere(indexToUpdate);
+                                String nameInput1 = InputCollector.getUserInput("Enter name: ");
+                                while (nameInput1.equals("")) {
+                                    System.out.println("You must enter this field.");
+                                    nameInput1 = InputCollector.getUserInput("Enter name: ");
+                                }
+                                String mobileInput1 = InputCollector.getUserInput("Enter mobile: ");
+                                while (mobileInput1.equals("")) {
+                                    System.out.println("You must enter this field.");
+                                    mobileInput1 = InputCollector.getUserInput("Enter mobile: ");
+                                }
+                                String workInput1 = InputCollector.getUserInput("Enter work: ");
+                                String homeInput1 = InputCollector.getUserInput("Enter home: ");
+                                String cityInput1 = InputCollector.getUserInput("Enter city: ");
+
+                                Contact contact1 = new Contact(indexToUpdate, nameInput1, mobileInput1, workInput1, homeInput1, cityInput1);
+                                contactsForThisUser.updateContact(indexInTheList, contact1);
+                                System.out.println("The contact is updated.");
+                            } else {
+                                System.out.println("The index number is invalid.");
+                            }
+                        } else {
+                            System.out.println("There is no contact yet.");
+                        }
                         break;
                     case 5:
                         System.out.println("Bye!");

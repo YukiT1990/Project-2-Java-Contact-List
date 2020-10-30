@@ -16,41 +16,70 @@ public class ContactList{
         return false;
     }
 
-    public void addContact(Contact newContact) {
-        // if contact doesn't exist
-//        for (Contact contact : contacts) {
-//            if ((contact.getName().equals(newContact.getName())) || contact.getMobile().equals(newContact.getMobile())) {
-//                System.out.println("The contact already exists.");
-//            } else {
-//                contacts.add(newContact);
-//            }
-//        }
+    public boolean canContactAdd(Contact newContact) {
         if (contacts.size() != 0) {
             for (Contact contact : contacts) {
-                if(!(contact.getName().equals(newContact.getName())) &&  (!(contact.getMobile().equals(newContact.getMobile())))) {
-                    contacts.add(newContact);
-                } else {
-                    System.out.println("The contact already exists.");
+                if ((contact.getName().equals(newContact.getName())) || contact.getMobile().equals(newContact.getMobile())) {
+                    return false;
                 }
             }
+            return true;
         } else {
-            contacts.add(newContact);
-            System.out.println("Successfully added a new contact!");
+            return true;
         }
+    }
+
+    public void addContact(Contact newContact) {
+        // if contact doesn't exist
+        // condition is checked by canContactAdd(Contact newContact)
+
+//        if (contacts.size() != 0) {
+//            for (Contact contact : contacts) {
+//                if ((contact.getName().equals(newContact.getName())) || contact.getMobile().equals(newContact.getMobile())) {
+//                    System.out.println("The contact already exists.");
+//                    break;
+//                } else {
+//                    contacts.add(newContact);
+//                    System.out.println("Successfully added a new contact!");
+//                    break;
+//                }
+//            }
+//        } else {
+//            contacts.add(newContact);
+//            System.out.println("Successfully added a new contact!");
+//        }
+        contacts.add(newContact);
+    }
+
+    // returns the index of the element in the ArrayList
+    public int isContactThere(int index) {
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getIndexNumber() == index) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void removeContact(int index) {
         // if contact exists
-        for (Contact contact : contacts) {
-            if (contact.getIndexNumber() == index) {
-                System.out.println("Successfully removed " + contact.getName() + ".");
-                contacts.remove(contact);
-                break;
-            }
-        }
+        // condition is checked by canContactAdd(Contact newContact)
+
+//        for (Contact contact : contacts) {
+//            if (contact.getIndexNumber() == index) {
+//                System.out.println("Successfully removed " + contact.getName() + ".");
+//                contacts.remove(contact);
+//                break;
+//            }
+//        }
+
+        System.out.println("Successfully removed " + contacts.get(index).getName() + ".");
+        contacts.remove(index);
     }
-    public void updateContact(Contact newContact) {
+    public void updateContact(int index, Contact newContact) {
         // if contact exists
+        contacts.set(index, newContact);
+
     }
     public void listContacts() {
         for (Contact contact : contacts) {
