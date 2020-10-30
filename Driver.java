@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class Driver {
     public static void main(String[] args) {
-//        MainMenu main1= new MainMenu();
-//        main1.displayMainMenu();
         int index = 0;
         ContactList contactsForThisUser = new ContactList();
 
@@ -27,27 +25,44 @@ public class Driver {
 
             try {
                 System.out.println("Enter your option: ");
-                int userchoice = input.nextInt();
-                switch(userchoice) {
+                int userChoice = input.nextInt();
+                switch(userChoice) {
                     case 1:
-//                        for (int i = 0; i <; i++) {
-//
-//                        }
-                        System.out.println(contactsForThisUser);
+                        if (!contactsForThisUser.isContactEmpty()) {
+                            contactsForThisUser.listContacts();
+                        } else {
+                            System.out.println("There is no contact yet.");
+                        }
                         break;
                     case 2:
                         String nameInput = InputCollector.getUserInput("Enter name: ");
+                        while (nameInput.equals("")) {
+                            System.out.println("You must enter this field.");
+                            nameInput = InputCollector.getUserInput("Enter name: ");
+                        }
                         String mobileInput = InputCollector.getUserInput("Enter mobile: ");
+                        while (mobileInput.equals("")) {
+                            System.out.println("You must enter this field.");
+                            mobileInput = InputCollector.getUserInput("Enter mobile: ");
+                        }
                         String workInput = InputCollector.getUserInput("Enter work: ");
                         String homeInput = InputCollector.getUserInput("Enter home: ");
                         String cityInput = InputCollector.getUserInput("Enter city: ");
 
                         Contact contact = new Contact(index, nameInput, mobileInput, workInput, homeInput, cityInput);
                         contactsForThisUser.addContact(contact);
-                        System.out.println("Successfully added a new contact!");
+
                         index += 1;
                         break;
                     case 3:
+                        if (!contactsForThisUser.isContactEmpty()) {
+                            contactsForThisUser.listContacts();
+                            System.out.println("Enter the index of the contact to remove: ");
+                            int indexToRemove = input.nextInt();
+                            contactsForThisUser.removeContact(indexToRemove);
+                        } else {
+                            System.out.println("There is no contact yet.");
+                        }
                         break;
                     case 4:
                         break;
