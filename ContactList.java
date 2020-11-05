@@ -32,22 +32,6 @@ public class ContactList{
     public void addContact(Contact newContact) {
         // if contact doesn't exist
         // condition is checked by canContactAdd(Contact newContact)
-
-//        if (contacts.size() != 0) {
-//            for (Contact contact : contacts) {
-//                if ((contact.getName().equals(newContact.getName())) || contact.getMobile().equals(newContact.getMobile())) {
-//                    System.out.println("The contact already exists.");
-//                    break;
-//                } else {
-//                    contacts.add(newContact);
-//                    System.out.println("Successfully added a new contact!");
-//                    break;
-//                }
-//            }
-//        } else {
-//            contacts.add(newContact);
-//            System.out.println("Successfully added a new contact!");
-//        }
         contacts.add(newContact);
     }
 
@@ -64,15 +48,6 @@ public class ContactList{
     public void removeContact(int index) {
         // if contact exists
         // condition is checked by canContactAdd(Contact newContact)
-
-//        for (Contact contact : contacts) {
-//            if (contact.getIndexNumber() == index) {
-//                System.out.println("Successfully removed " + contact.getName() + ".");
-//                contacts.remove(contact);
-//                break;
-//            }
-//        }
-
         System.out.println("Successfully removed " + contacts.get(index).getName() + ".");
         contacts.remove(index);
     }

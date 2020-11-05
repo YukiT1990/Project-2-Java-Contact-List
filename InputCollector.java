@@ -16,7 +16,6 @@ public class InputCollector {
            if (userInput.matches("[0-9a-zA-Z]+(( |-)*[0-9a-zA-Z]*)*")) {
                return userInput;
            } else {
-//               System.out.println("You should input at least one number or letter.");
                return "";
            }
 
